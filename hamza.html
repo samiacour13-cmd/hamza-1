@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>رحلة في عالم الهمزة</title>
+<style>
+:root{--navy:#1d3557;--teal:#2a6f77;--gold:#b88a2e;--bg:#f5f3ee;--card:#fff;--ink:#222a33;--mut:#66707c;--ok:#1e7a4c;--okbg:#e6f4ec;--bad:#b3362f;--badbg:#fbeceb;--line:#e2ddd0;--sel:#e8eef7}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Naskh Arabic","Amiri","Traditional Arabic","Segoe UI",Tahoma,"Geeza Pro",Arial,sans-serif;font-size:18px;line-height:1.9}
+button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+button{cursor:pointer}
+.wrap{max-width:1100px;margin:0 auto;padding:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 2px 10px rgba(29,53,87,.06);padding:22px}
+.fade{animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.hero{text-align:center;padding:34px 24px}
+.kicker{color:var(--gold);font-weight:700;letter-spacing:.3px}
+.hero h1{margin:.2em 0 0;color:var(--navy);font-size:2.1em;line-height:1.4}
+.hero h2{margin:.1em 0 .6em;color:var(--teal);font-weight:600;font-size:1.25em}
+.hero p{max-width:760px;margin:.4em auto}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:right;margin:22px 0}
+.box{background:#faf8f3;border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.box h3{margin:.1em 0 .3em;color:var(--navy);font-size:1.05em}
+.box ul{margin:0;padding:0 20px 0 0;font-size:.92em}
+.btn{background:var(--navy);color:#fff;border:0;border-radius:10px;padding:10px 26px;font-weight:700;transition:.2s}
+.btn:hover{background:#274a78}
+.btn:disabled{background:#b7bfca;cursor:not-allowed}
+.btn.sec{background:#fff;color:var(--navy);border:1.5px solid var(--navy)}
+.btn.sec:hover{background:var(--sel)}
+.btn.gold{background:var(--gold)}
+.row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:18px;align-items:start}
+.dash{position:sticky;top:12px}
+.dash h3{margin:0 0 8px;color:var(--navy);font-size:1.05em}
+.bar{height:12px;background:#e9e5da;border-radius:8px;overflow:hidden}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--teal),var(--navy));width:0;transition:width .5s}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.st{background:#faf8f3;border:1px solid var(--line);border-radius:10px;padding:6px 10px;text-align:center;font-size:.85em;line-height:1.5}
+.st b{display:block;font-size:1.4em;color:var(--navy)}
+.st.g b{color:var(--ok)}.st.r b{color:var(--bad)}
+.axrow{font-size:.82em;line-height:1.5;margin:8px 0}
+.axrow .bar{height:7px;margin-top:3px}
+.axrow .bar>i{background:var(--gold)}
+.axrow span.lv{color:var(--mut)}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.tag{font-size:.78em;padding:1px 12px;border-radius:20px;background:var(--sel);color:var(--navy);border:1px solid #cfd9ea}
+.tag.lv-b{background:#e6f4ec;color:var(--ok);border-color:#c5e3d2}
+.tag.lv-m{background:#fff4dd;color:#8a6414;border-color:#f0dcaa}
+.tag.lv-a{background:#f7e4e2;color:var(--bad);border-color:#ecc4c0}
+.instr{color:var(--mut);font-size:.88em;margin-bottom:4px}
+.qtext{font-size:1.18em;font-weight:600;margin:6px 0 14px;line-height:2}
+.tg{background:#fdf1cf;border-bottom:3px solid var(--gold);padding:0 6px;border-radius:5px;font-weight:700;color:#4b3600;white-space:nowrap}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:12px;align-items:center;text-align:right;width:100%;background:#fff;border:1.5px solid var(--line);border-radius:11px;padding:8px 14px;transition:.15s}
+.opt:hover:not(:disabled){border-color:var(--teal);background:#f3f8f8}
+.opt.sel{border-color:var(--navy);background:var(--sel)}
+.opt.ok{border-color:var(--ok);background:var(--okbg)}
+.opt.bad{border-color:var(--bad);background:var(--badbg)}
+.opt:disabled{cursor:default}
+.bul{flex:0 0 32px;height:32px;border-radius:50%;background:var(--sel);color:var(--navy);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9em}
+.tfrow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.tfrow .opt{justify-content:center;font-weight:700;font-size:1.1em}
+.sub{margin:12px 0 6px;font-weight:700;color:var(--navy);font-size:.95em}
+.keys{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.key{min-width:44px;height:44px;border:1.5px solid var(--navy);background:#fff;color:var(--navy);border-radius:9px;font-weight:700;font-size:1.15em}
+.key:hover{background:var(--sel)}
+.blank{display:inline-block;min-width:34px;text-align:center;border-bottom:3px dashed var(--navy);background:#e8eef7;border-radius:6px;margin:0 2px;cursor:pointer;color:var(--navy)}
+.blank.act{background:#ffe9a8;border-bottom-color:var(--gold)}
+.blank.ok{background:var(--okbg);color:var(--ok);border-bottom:3px solid var(--ok)}
+.blank.bad{background:var(--badbg);color:var(--bad);border-bottom:3px solid var(--bad)}
+input.txt,textarea.txt,select.sl{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:8px 12px;background:#fff}
+input.txt:focus,textarea.txt:focus,select.sl:focus{outline:2px solid var(--teal);border-color:var(--teal)}
+textarea.txt{min-height:110px;resize:vertical}
+.ok-b{border-color:var(--ok)!important;background:var(--okbg)!important}
+.bad-b{border-color:var(--bad)!important;background:var(--badbg)!important}
+.clsrow{display:grid;grid-template-columns:minmax(120px,200px) 1fr;gap:12px;align-items:center;margin:8px 0}
+.clsrow .w{font-size:1.15em;font-weight:700}
+.fixnote{font-size:.85em;color:var(--bad)}
+.actions{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+.fb{margin-top:16px;border-radius:12px;padding:12px 16px;border:1.5px solid}
+.fb.ok{background:var(--okbg);border-color:#bfe0cd}
+.fb.bad{background:var(--badbg);border-color:#efc7c4}
+.fb h4{margin:0 0 4px;font-size:1.05em}
+.fb.ok h4{color:var(--ok)}.fb.bad h4{color:var(--bad)}
+.fb p{margin:.3em 0}
+.rule{background:#fff;border-radius:9px;padding:6px 12px;border-right:4px solid var(--gold);margin-top:8px;font-size:.95em}
+.crit{margin:6px 0;padding:0;list-style:none;font-size:.95em}
+.crit li::before{content:"✓ ";color:var(--ok);font-weight:700}
+.crit li.no::before{content:"✗ ";color:var(--bad)}
+.axintro{text-align:center;padding:40px 24px}
+.axintro .num{display:inline-block;width:64px;height:64px;line-height:64px;border-radius:50%;background:var(--navy);color:#fff;font-size:1.8em;font-weight:700}
+.axintro h2{color:var(--navy);margin:.4em 0 .1em}
+.big{font-size:3em;font-weight:800;color:var(--navy);line-height:1.2}
+.big small{font-size:.4em;color:var(--mut);font-weight:600}
+.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:14px 0}
+table.rt{width:100%;border-collapse:collapse;margin:8px 0;font-size:.95em}
+table.rt th,table.rt td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right}
+table.rt th{background:#faf8f3;color:var(--navy)}
+.pill{display:inline-block;padding:0 12px;border-radius:20px;font-size:.85em;background:var(--sel);color:var(--navy)}
+.pill.g{background:var(--okbg);color:var(--ok)}.pill.y{background:#fff4dd;color:#8a6414}.pill.r{background:var(--badbg);color:var(--bad)}
+h3.sec{color:var(--navy);border-right:5px solid var(--gold);padding-right:10px;margin:26px 0 8px}
+details.err{border:1px solid var(--line);border-radius:10px;margin:8px 0;background:#fff}
+details.err summary{cursor:pointer;padding:8px 14px;font-weight:600;list-style:none}
+details.err summary::-webkit-details-marker{display:none}
+details.err[open] summary{border-bottom:1px solid var(--line);background:#faf8f3}
+details.err .in{padding:6px 16px 12px}
+.tiny{font-size:.82em;color:var(--mut)}
+ul.pl{margin:4px 0;padding:0 22px 0 0}
+@media (max-width:900px){
+ .layout{grid-template-columns:1fr}.dash{position:static;order:-1}
+ .cols{grid-template-columns:1fr}
+ body{font-size:17px}.card{padding:16px}
+ .clsrow{grid-template-columns:1fr}
+}
+@media print{
+ .noprint{display:none!important}
+ body{background:#fff;font-size:13px}
+ .card{box-shadow:none;border:1px solid #999;padding:10px}
+ .wrap{padding:0}
+ details.err{page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<noscript><p style="padding:20px">يحتاج هذا التمرين إلى تفعيل JavaScript.</p></noscript>
+<script>
+/*CORE_START*/
+const KEY="hamza_activity_v1";
+const AXES=[
+ {n:"الهمزة في أول الكلمة",d:"التمييز بين همزة القطع وهمزة الوصل في الأسماء والأفعال والحروف."},
+ {n:"الهمزة المتوسطة",d:"رسم الهمزة على الألف والواو والنبرة والسطر، وتطبيق قاعدة أقوى الحركتين."},
+ {n:"الهمزة المتطرفة",d:"أثر حركة الحرف السابق في رسم الهمزة، وحالات اتصالها بالضمائر والتثنية والجمع."},
+ {n:"اكتشاف الأخطاء وتصحيحها",d:"تحديد الأخطاء الإملائية وتصويبها مع التعليل."},
+ {n:"التطبيق والتحليل اللغوي",d:"تحليل الكلمات وتوظيف القواعد في سياقات مركبة."}
+];
+const TYPES={mcq:"اختيار من متعدد",tf:"صح أو خطأ مع التصحيح",fill:"إكمال الفراغ",corr:"تصحيح الخطأ الإملائي",cls:"تصنيف الكلمات",exp:"التعليل والتحليل الإملائي"};
+const INSTR={
+ mcq:"اختر الإجابة الصحيحة الوحيدة.",
+ tf:"حدّد صحة العبارة، فإن رأيتها خاطئة فاختر التصحيح المناسب.",
+ fill:"انقر على الفراغ ثم اختر الحرف الحامل للهمزة (ا للألف المجردة، و«ء» للسطر).",
+ corr:"اكتب الكلمة المُبيَّنة كتابة صحيحة (استعن بلوحة الحروف أو بلوحة المفاتيح).",
+ cls:"اختر التصنيف المناسب لكل كلمة.",
+ exp:"اكتب تعليلًا موجزًا وفق القاعدة الإملائية."
+};
+const LV={b:"أساسي",m:"متوسط",a:"متقدم"};
+const LET=["أ","إ","آ","ؤ","ئ","ء","ا"];
+const Q=[
+/* ===== المحور الأول: الهمزة في أول الكلمة ===== */
+{ax:0,lv:"b",t:"mcq",r:"همزة الوصل في الأسماء العشرة",q:"أيُّ الكلمات الآتية تبدأ بهمزة وصل؟",o:["أَخَذَ","اسْمٌ","إِكْرَامٌ","أَمَلٌ"],a:1,
+ why:"«اسم» من الأسماء العشرة التي همزتها همزة وصل، وهي: ابن، ابنة، ابنم، اسم، است، اثنان، اثنتان، امرؤ، امرأة، ايمُن الله. أما «أخذ» فماضٍ ثلاثي، و«إكرام» مصدر الفعل الرباعي «أكرم»، و«أمل» اسم ليس من الأسماء العشرة؛ فهمزاتها همزة قطع."},
+{ax:0,lv:"b",t:"mcq",r:"همزة الوصل في أمر الفعل الثلاثي",q:"ما نوع الهمزة في فعل الأمر [[اكْتُبْ]] من قولنا: «اكْتُبْ درسك»؟ وما سبب ذلك؟",o:["همزة قطع؛ لأنه فعل أمر","همزة قطع؛ لأنها تثبت نطقًا في الدرج","همزة وصل؛ لأنه أمر من فعل ثلاثي","همزة وصل؛ لأنه ماضٍ خماسي"],a:2,
+ why:"همزة الوصل تقع في أمر الفعل الثلاثي (اكتب، اجلس، اذهب)، وفي ماضي الفعل الخماسي والسداسي وأمره ومصدره. و«اكتب» أمر من الفعل الثلاثي «كتب»."},
+{ax:0,lv:"b",t:"tf",r:"الفرق النطقي بين همزة القطع وهمزة الوصل",q:"تثبت همزة القطع نطقًا في الابتداء وفي درج الكلام، أما همزة الوصل فتُنطق في الابتداء وتسقط في الدرج.",truth:true,
+ co:["همزة القطع تسقط في درج الكلام، وهمزة الوصل تثبت فيه","كلتا الهمزتين تسقطان نطقًا في درج الكلام","كلتا الهمزتين تثبتان نطقًا في الابتداء والدرج","همزة الوصل تُنطق في الدرج ولا تُنطق في الابتداء"],ca:-1,
+ why:"الفرق الجوهري بين الهمزتين نطقي: همزة القطع تثبت في الابتداء والدرج كما في «فَأَكْرِمْ»، وهمزة الوصل تُنطق في ابتداء الكلام وتسقط في درجه كما في «فَاكْتُبْ» التي تُنطق «فَكْتُبْ»."},
+{ax:0,lv:"m",t:"tf",r:"همزة القطع في مصدر الفعل الرباعي",q:"تبدأ كلمة [[إِكْرَام]] بهمزة وصل لأنها مصدر.",truth:false,
+ co:["بل تبدأ بهمزة وصل؛ لأنها من الأسماء العشرة","بل تبدأ بهمزة قطع؛ لأنها فعل أمر","بل تبدأ بهمزة قطع؛ لأنها مصدر الفعل الرباعي «أكرم»","بل تبدأ بهمزة وصل؛ لأن مصدر الرباعي همزته همزة وصل"],ca:2,
+ why:"مصدر الفعل الرباعي على وزن «إفعال» وهمزته همزة قطع: إكرام، إرسال، إخراج. أما مصدر الفعل الخماسي والسداسي ففيه همزة وصل: انطلاق، استخراج."},
+{ax:0,lv:"m",t:"fill",r:"همزة الوصل في أمر الفعل الخماسي",q:"قال المعلم: [[▢سْتَمِعُوا]] إلى زميلكم.",blanks:["ا"],hint:"الكلمة فعل أمر.",
+ why:"«استمعوا» أمر من الفعل الخماسي «استمع»، وأمر الخماسي والسداسي يبدأ بهمزة وصل، فتُكتب ألفًا مجردة من الهمزة: اسْتَمِعُوا."},
+{ax:0,lv:"m",t:"corr",r:"همزة الوصل بعد «ال» التعريف",q:"يبدأ [[الإمتحان]] غدًا.",acc:["الامتحان"],
+ why:"«امتحان» مصدر الفعل الخماسي «امتحن»، فهمزته همزة وصل تُكتب ألفًا مجردة من أي همزة، ولو سبقتها «ال» التعريف: الامتحان."},
+{ax:0,lv:"m",t:"cls",r:"التمييز بين همزة الوصل والقطع في الأسماء",q:"حدّد نوع الهمزة في أول كل كلمة من الكلمات الآتية:",cats:["همزة وصل","همزة قطع"],
+ items:[["اسْمٌ",0],["أَرْضٌ",1],["ابْنَةٌ",0],["إِيمَانٌ",1],["امْرَأَةٌ",0]],
+ why:"اسم وابنة وامرأة من الأسماء العشرة فهمزتها همزة وصل. أما «أرض» و«إيمان» فليستا منها، فهمزتهما همزة قطع."},
+{ax:0,lv:"a",t:"cls",r:"همزة الوصل والقطع في الأفعال ومصادرها",q:"صنّف الكلمات الآتية بحسب نوع الهمزة في أولها:",cats:["همزة وصل","همزة قطع"],
+ items:[["انْطَلَقَ",0],["أَطْلَقَ",1],["ادْخُلْ",0],["أَدْخِلْ",1],["اسْتِخْدَام",0],["إِخْرَاج",1]],
+ why:"ماضي الخماسي والسداسي وأمر الثلاثي ومصدر الخماسي والسداسي همزتها وصل (انطلق، ادخل، استخدام). أما ماضي الرباعي وأمره ومصدره فهمزتها قطع (أطلق، أدخل، إخراج)."},
+{ax:0,lv:"a",t:"exp",r:"مصدر الرباعي ومصدر السداسي",q:"علّل كتابة همزة [[اسْتِقْبَال]] همزة وصل، وهمزة [[إِقْبَال]] همزة قطع.",
+ model:"لأن «استقبال» مصدر الفعل السداسي «استقبل»، ومصدر الخماسي والسداسي همزته همزة وصل؛ أما «إقبال» فمصدر الفعل الرباعي «أقبل»، ومصدر الرباعي همزته همزة قطع.",
+ crit:[{t:"«استقبال» مصدر فعل سداسي (استقبل)",k:["سداسي","ستة","6"]},{t:"«إقبال» مصدر فعل رباعي (أقبل)",k:["رباعي","اربعة","4"]}],
+ why:"الحكم تابع لعدد أحرف الفعل الماضي: الرباعي همزته قطع في ماضيه وأمره ومصدره، والخماسي والسداسي همزتهما وصل."},
+{ax:0,lv:"a",t:"mcq",r:"تطبيق مركب على الهمزة في أول الكلمة",q:"أيُّ الجمل الآتية خالية من الخطأ في كتابة همزات أول الكلمات؟",o:["إنتظرنا الأستاذ طويلًا","أستخرج الباحث النتائج","انتظرنا الأستاذ طويلًا","إستمع الطلبة إلى الشرح"],a:2,
+ why:"الصحيحة «انتظرنا الأستاذ طويلًا»: «انتظر» خماسي همزته وصل، و«الأستاذ» همزتها قطع بعد «ال». أما «إنتظرنا» و«إستمع» ففيهما همزة قطع في موضع الوصل، وصواب «أستخرج» هو «استخرج» لأنه سداسي."},
+/* ===== المحور الثاني: الهمزة المتوسطة ===== */
+{ax:1,lv:"b",t:"mcq",r:"الهمزة المتوسطة على الألف",q:"تُرسم الهمزة المتوسطة في كلمة [[سَأَلَ]] على:",o:["الواو","النبرة","السطر","الألف"],a:3,
+ why:"الهمزة مفتوحة وما قبلها مفتوح (سَ ـ أَ)، فتساوت الحركتان وتُكتب الهمزة على ألف."},
+{ax:1,lv:"b",t:"mcq",r:"الهمزة المتوسطة على النبرة",q:"أيُّ الكلمات الآتية رُسمت فيها الهمزة المتوسطة على نبرة؟",o:["بِئْر","مُؤْمِن","رَأْس","سُؤَال"],a:0,
+ why:"في «بِئْر» الهمزة ساكنة وما قبلها مكسور فتُكتب على نبرة. أما «مؤمن» فعلى واو لأن ما قبلها مضموم، و«رأس» على ألف لأن ما قبلها مفتوح، و«سؤال» على واو لأن الضمة أقوى من فتحة الهمزة."},
+{ax:1,lv:"m",t:"mcq",r:"قاعدة أقوى الحركتين",q:"ما سبب رسم الهمزة على واو في كلمة [[سُؤَال]]؟",o:["لأن الهمزة مفتوحة وما قبلها مفتوح","لأن الهمزة مضمومة وما قبلها مكسور","لأن الهمزة ساكنة وما قبلها مفتوح","لأن الضمة على الحرف السابق أقوى من فتحة الهمزة"],a:3,
+ why:"ترتيب الحركات من الأقوى إلى الأضعف: الكسرة ثم الضمة ثم الفتحة ثم السكون. في «سُؤَال» السين مضمومة والهمزة مفتوحة، والضمة أقوى فتُرسم الهمزة على واو."},
+{ax:1,lv:"m",t:"tf",r:"الهمزة المكسورة بعد حرف مفتوح",q:"تُكتب الهمزة في كلمة [[رَئِيس]] على ألف لأن الحرف الذي قبلها مفتوح.",truth:false,
+ co:["تُكتب على ألف؛ لأن الفتحة أقوى من الكسرة","تُكتب على نبرة؛ لأن الهمزة مكسورة والكسرة أقوى من الفتحة","تُكتب على السطر؛ لأن الهمزة مسبوقة بحرف مفتوح","تُكتب على واو؛ لأن الياء بعدها ساكنة"],ca:1,
+ why:"في «رَئِيس» الهمزة مكسورة، والكسرة أقوى من فتحة الحرف السابق، فتُكتب الهمزة على نبرة."},
+{ax:1,lv:"b",t:"fill",r:"الهمزة الساكنة بعد ضمة",q:"المسلم [[مُ▢مِنٌ]] بربه.",blanks:["ؤ"],hint:"الهمزة ساكنة.",
+ why:"الهمزة ساكنة وما قبلها مضموم (مُ ـ ؤْ)، فتُكتب على واو: مؤمن."},
+{ax:1,lv:"m",t:"fill",r:"الهمزة المفتوحة بعد ساكن",q:"طرح الأستاذ [[مَسْ▢لَةً]] صعبة.",blanks:["أ"],hint:"الهمزة مفتوحة.",
+ why:"الهمزة مفتوحة وما قبلها ساكن (السين)، والساكن لا يُعتدّ به، فيُنظر إلى حركة الهمزة: الفتحة تناسبها الألف، فتُكتب «مسألة»."},
+{ax:1,lv:"m",t:"corr",r:"الهمزة المضمومة بعد ألف مد",q:"ما أجمل [[التفائل]] في الحياة!",acc:["التفاؤل","تفاؤل"],
+ why:"الهمزة مضمومة بعد ألف مد فتُكتب على واو: تفاؤل، تشاؤم، تساؤل. أما «التفائل» فرسم خاطئ."},
+{ax:1,lv:"a",t:"cls",r:"تحديد حامل الهمزة المتوسطة",q:"حدّد حامل الهمزة المتوسطة في كل كلمة:",cats:["الألف","الواو","النبرة","السطر"],
+ items:[["سُئِلَ",2],["رُؤْيَة",1],["مَسْأَلَة",0],["قِرَاءَة",3],["تَسَاؤُل",1]],
+ why:"سُئِلَ: الكسرة أقوى من الضمة فتُكتب على نبرة. رُؤْيَة: ساكنة بعد مضموم فعلى واو. مَسْأَلَة: مفتوحة بعد ساكن فعلى ألف. قِرَاءَة: مفتوحة بعد ألف مد فعلى السطر. تَسَاؤُل: مضمومة بعد ألف مد فعلى واو."},
+{ax:1,lv:"a",t:"exp",r:"قاعدة أقوى الحركتين",q:"علّل رسم الهمزة على واو في كلمة [[فُؤَاد]].",
+ model:"تُكتب الهمزة على واو؛ لأن الحرف السابق مضموم والهمزة مفتوحة، والضمة أقوى من الفتحة.",
+ crit:[{t:"ذكر أن الحرف السابق مضموم",k:["ضم"]},{t:"ذكر أن الضمة أقوى من الفتحة",k:["أقوى","قوة","أقوا"]}],
+ why:"عند اختلاف حركة الهمزة وحركة ما قبلها تُرسم الهمزة على حرف يناسب أقوى الحركتين. وهنا الضمة (فُ) أقوى من الفتحة (ـأَ) فتُرسم على واو."},
+{ax:1,lv:"a",t:"exp",r:"الهمزة الساكنة بعد كسرة",q:"علّل رسم الهمزة على نبرة في كلمة [[بِئْر]].",
+ model:"تُكتب الهمزة على نبرة؛ لأنها ساكنة وما قبلها مكسور، والكسرة تناسبها النبرة (الياء).",
+ crit:[{t:"ذكر أن ما قبل الهمزة مكسور",k:["كسر"]},{t:"ذكر أن الهمزة ساكنة",k:["ساكن","سكون"]}],
+ why:"إذا كانت الهمزة ساكنة نُظر إلى حركة الحرف السابق: كسرة فنبرة، ضمة فواو، فتحة فألف."},
+/* ===== المحور الثالث: الهمزة المتطرفة ===== */
+{ax:2,lv:"b",t:"mcq",r:"الهمزة المتطرفة بعد فتحة",q:"تُرسم الهمزة المتطرفة في كلمة [[قَرَأَ]] على:",o:["الألف","الواو","النبرة","السطر"],a:0,
+ why:"الهمزة المتطرفة تُكتب على حرف يناسب حركة ما قبلها؛ وبعد الفتحة تُكتب على ألف: قَرَأَ."},
+{ax:2,lv:"b",t:"mcq",r:"الهمزة المتطرفة بعد ساكن",q:"أيُّ الكتابات الآتية صحيحة؟",o:["جُزْأ","جُزْؤ","جُزْء","جُزْئ"],a:2,
+ why:"الهمزة المتطرفة المسبوقة بحرف ساكن (الزاي) تُكتب على السطر: جزء."},
+{ax:2,lv:"m",t:"mcq",r:"الهمزة المتطرفة على النبرة",q:"أيُّ الكلمات الآتية رُسمت فيها الهمزة المتطرفة على نبرة؟",o:["شَاطِئ","بُطْء","سَمَاء","تَبَاطُؤ"],a:0,
+ why:"شاطئ: الحرف السابق مكسور (طِ) فتُكتب على نبرة. بطء وسماء: سُبقت بساكن فتُكتب على السطر. تباطؤ: سُبقت بمضموم فتُكتب على واو."},
+{ax:2,lv:"b",t:"tf",r:"الهمزة المتطرفة المسبوقة بساكن",q:"تُكتب الهمزة المتطرفة على السطر إذا سُبقت بحرف ساكن، كما في [[جُزْء]] و[[هُدُوء]].",truth:true,
+ co:["تُكتب على نبرة إذا سُبقت بحرف ساكن","تُكتب على ألف إذا سُبقت بحرف ساكن","تُكتب على واو إذا سُبقت بحرف ساكن","تُكتب على السطر إذا سُبقت بحرف متحرك"],ca:-1,
+ why:"إذا سُبقت الهمزة المتطرفة بحرف ساكن، صحيحًا كان أو حرف مد، كُتبت على السطر: جزء، هدوء، سماء، شيء."},
+{ax:2,lv:"m",t:"tf",r:"الهمزة المتطرفة بعد حرف مضموم",q:"تُكتب الهمزة المتطرفة في كلمة [[تَبَاطُؤ]] على نبرة لأن في الكلمة ألفًا قبلها.",truth:false,
+ co:["تُكتب على ألف؛ لأن الحرف السابق مفتوح","تُكتب على واو؛ لأن الحرف الذي قبلها مضموم","تُكتب على السطر؛ لأن الكلمة مصدر","تُكتب على نبرة؛ لأن الهمزة ساكنة"],ca:1,
+ why:"الحرف الذي يسبق الهمزة في «تباطؤ» هو الطاء المضمومة، فتُكتب الهمزة المتطرفة على واو، لا بسبب الألف ولا النبرة."},
+{ax:2,lv:"m",t:"fill",r:"الهمزة المتطرفة بعد كسرة",q:"جلسنا على [[الشَّاطِ▢]] الجميل.",blanks:["ئ"],hint:"الهمزة متطرفة.",
+ why:"الحرف السابق (الطاء) مكسور، فتُكتب الهمزة المتطرفة على نبرة: الشاطئ."},
+{ax:2,lv:"a",t:"fill",r:"الهمزة المتطرفة مع واو الجماعة",q:"المتعلمون [[الْمُبْتَدِ▢ونَ]] يحتاجون إلى تدريب.",blanks:["ئ"],hint:"الهمزة مضمومة.",
+ why:"عند اتصال واو الجماعة تصير الهمزة متوسطة مضمومة، وما قبلها مكسور (دِ)، والكسرة أقوى من الضمة فتُكتب على نبرة: المبتدئون، وكذلك قارئون وناشئون."},
+{ax:2,lv:"a",t:"corr",r:"الهمزة المتطرفة بعد ياء ساكنة",q:"هذا [[شيئ]] مهم.",acc:["شيء"],
+ why:"في «شيء» الهمزة متطرفة مسبوقة بياء ساكنة، فتُكتب على السطر، لا على نبرة."},
+{ax:2,lv:"m",t:"cls",r:"رسم الهمزة المتطرفة",q:"حدّد حامل الهمزة المتطرفة في كل كلمة:",cats:["الألف","الواو","النبرة","السطر"],
+ items:[["قَرَأَ",0],["بَطِيء",3],["شَاطِئ",2],["تَبَاطُؤ",1],["سَمَاء",3]],
+ why:"قَرَأَ: فتحة فألف. بَطِيء: بعد ياء ساكنة فالسطر. شَاطِئ: كسرة فنبرة. تَبَاطُؤ: ضمة فواو. سَمَاء: بعد ألف ساكنة فالسطر."},
+{ax:2,lv:"a",t:"exp",r:"الهمزة المتطرفة بعد ياء ساكنة",q:"علّل رسم الهمزة المتطرفة على السطر في كلمة [[بَطِيء]].",
+ model:"تُكتب الهمزة على السطر؛ لأنها مسبوقة بحرف ساكن هو الياء الساكنة، والهمزة المتطرفة بعد الساكن تُكتب على السطر.",
+ crit:[{t:"ذكر أن الحرف السابق ساكن",k:["ساكن","سكون"]},{t:"ذكر الياء أو حرف المد قبل الهمزة",k:["ياء","حرف مد","مد"]}],
+ why:"الياء في «بطيء» حرف مد ساكن، والهمزة المتطرفة بعد الساكن تُكتب على السطر."},
+/* ===== المحور الرابع: اكتشاف الأخطاء وتصحيحها ===== */
+{ax:3,lv:"b",t:"mcq",r:"اكتشاف الخطأ في رسم الهمزة المتوسطة",q:"أيُّ الجمل الآتية فيها خطأ إملائي في كتابة الهمزة؟",o:["قرأ الطالب جزءًا من الكتاب","سُئل الأستاذ عن الدرس","المدير مسؤول عن شئون المؤسسة","ازدادت ثقتنا بأنفسنا"],a:2,
+ why:"الخطأ في «شئون»، والصواب «شؤون»؛ لأن الهمزة مضمومة وما قبلها مضموم (شُؤُون) فتُكتب على واو. والجمل الأخرى سليمة."},
+{ax:3,lv:"b",t:"mcq",r:"الهمزة المفتوحة بعد ألف مد",q:"اختر الرسم الصحيح للكلمة:",o:["قِرَائَة","قِرَاأَة","قِرَاؤَة","قِرَاءَة"],a:3,
+ why:"الهمزة مفتوحة بعد ألف مد، فتُكتب على السطر: قراءة."},
+{ax:3,lv:"m",t:"mcq",r:"الهمزة المضمومة بعد فتحة",q:"ما الرسم الإملائي الصحيح للفعل المضارع المتصل بواو الجماعة في الجملة: «الطلبة ... الصحف يوميًا»؟",o:["يَقْرَؤُونَ","يَقْرَأُونَ","يَقْرَئُونَ","يَقْرَاوُنَ"],a:0,
+ why:"الهمزة مضمومة بعد فتحة، والضمة أقوى فتُكتب على واو: يقرؤون."},
+{ax:3,lv:"m",t:"tf",r:"الهمزة بعد ياء ساكنة",q:"تُكتب الهمزة في كلمة [[بِيئَة]] على السطر لأن قبلها ياء ساكنة.",truth:false,
+ co:["تُكتب على ألف؛ لأنها مفتوحة","تُكتب على واو؛ لأنها مسبوقة بياء ساكنة","تُكتب على السطر؛ لأنها متوسطة","تُكتب على نبرة؛ لأنها مسبوقة بياء ساكنة"],ca:3,
+ why:"الياء الساكنة قبل الهمزة المتوسطة تناسبها النبرة، فتُكتب على نبرة: بيئة، هيئة، خطيئة."},
+{ax:3,lv:"m",t:"fill",r:"همزة القطع والهمزة المكسورة بعد ساكن",q:"أجاب الطالب عن [[▢سْ▢لَةِ]] الأستاذ كلها.",blanks:["أ","ئ"],hint:"الهمزة الأولى مفتوحة والثانية مكسورة.",
+ why:"أسئلة: الهمزة الأولى همزة قطع مفتوحة فتُكتب على ألف (أ). والثانية مكسورة بعد ساكن فتُكتب على نبرة (ئ)."},
+{ax:3,lv:"b",t:"corr",r:"همزة القطع في الأسماء غير العشرة",q:"حضر [[استاذ]] الأدب العربي.",acc:["أستاذ"],
+ why:"«أستاذ» اسم ليس من الأسماء العشرة، فهمزته همزة قطع وتُكتب (أ)."},
+{ax:3,lv:"m",t:"corr",r:"الهمزة بعد ياء ساكنة",q:"أعلنت [[الهيأة]] العليا النتائج.",acc:["الهيئة","هيئة"],
+ why:"الهمزة مفتوحة بعد ياء ساكنة فتُكتب على نبرة: الهيئة."},
+{ax:3,lv:"a",t:"corr",r:"الهمزة المفتوحة بعد ساكن مع ضمير متصل",q:"يُحمد الطالب على [[جرئته]] في الحوار.",acc:["جرأته"],
+ why:"الهمزة مفتوحة وما قبلها ساكن (الراء)، فتُكتب على ألف: جُرْأَة، جُرْأَته."},
+{ax:3,lv:"a",t:"exp",r:"الهمزة المضمومة بعد مضموم",q:"كتب طالب الجملة: «تهتم الإدارة بـ[[شئون]] الطلبة». اكتب الرسم الصحيح للكلمة المُبيَّنة، ثم علّل ذلك.",
+ model:"شؤون؛ لأن الهمزة مضمومة وما قبلها مضموم (شُ)، والضمة تناسبها الواو فتُكتب على واو.",
+ crit:[{t:"كتابة الصواب «شؤون»",k:["شؤون"]},{t:"ذكر أن الهمزة أو ما قبلها مضموم",k:["ضم"]}],
+ why:"إذا اجتمعت ضمتان (ضمة الهمزة وضمة ما قبلها) كُتبت الهمزة على واو: شُؤُون."},
+{ax:3,lv:"a",t:"exp",r:"الهمزة المكسورة بعد ساكن",q:"كتب طالب: «سأنتهي من [[جزءه]] الأخير». اكتب الرسم الصحيح للكلمة المُبيَّنة، ثم علّل ذلك.",
+ model:"الصواب «جزئه»؛ لأن الكلمة مجرورة بـ«من» فالهمزة مكسورة، والهمزة المكسورة بعد ساكن تُكتب على نبرة.",
+ crit:[{t:"كتابة الصواب «جزئه»",k:["جزئه"]},{t:"ذكر أن الهمزة مكسورة أو أن الكلمة مجرورة",k:["كسر","جر"]}],
+ why:"عند اتصال الضمير تصير الهمزة متوسطة، وحركتها تتبع إعراب الكلمة؛ وفي حالة الجر تكون مكسورة فتُكتب على نبرة."},
+/* ===== المحور الخامس: التطبيق والتحليل اللغوي ===== */
+{ax:4,lv:"b",t:"mcq",r:"الهمزة المتوسطة بعد ضمة",q:"ما نوع الهمزة وموقعها في كلمة [[مُؤَلِّف]]؟",o:["همزة متوسطة على واو","همزة قطع في أول الكلمة","همزة متوسطة على نبرة","همزة متطرفة على واو"],a:0,
+ why:"الهمزة في وسط «مُؤَلِّف» مفتوحة بعد ضمة، والضمة أقوى فتُكتب على واو."},
+{ax:4,lv:"b",t:"mcq",r:"التمييز بين المتوسطة والمتطرفة",q:"أيُّ الكلمات الآتية تحتوي همزة متطرفة؟",o:["مَسْأَلَة","سُؤَال","مُؤْمِن","جُزْء"],a:3,
+ why:"«جزء» همزتها متطرفة. أما «مسألة» و«سؤال» و«مؤمن» فالهمزة فيها متوسطة."},
+{ax:4,lv:"m",t:"mcq",r:"تطبيق مركب على الهمزة الأولية والمتوسطة والمتطرفة",q:"أيُّ الجمل الآتية خالية من الأخطاء الإملائية في الهمزة الأولية والمتوسطة والمتطرفة؟",o:["إستمع الطالب إلى تساؤلات الأستاذ بهدوء","استمع الطالب إلى تساؤلات الأستاذ بهدوء","استمع الطالب إلى تسائلات الأستاذ بهدوء","استمع الطالب إلى تساؤلات الأستاذ بهدوؤ"],a:1,
+ why:"الجملة الثانية سليمة: «استمع» خماسي همزته وصل، و«إلى» و«الأستاذ» همزتاهما قطع، و«تساؤلات» مضمومة بعد ألف مد فعلى واو، و«بهدوء» متطرفة بعد واو ساكنة فعلى السطر."},
+{ax:4,lv:"m",t:"tf",r:"الهمزة الساكنة بعد ضمة",q:"تُكتب الهمزة في كلمة [[مُؤْتَمَر]] على نبرة لأنها ساكنة.",truth:false,
+ co:["تُكتب على واو؛ لأنها ساكنة وقبلها حرف مضموم","تُكتب على ألف؛ لأنها ساكنة وقبلها حرف مفتوح","تُكتب على السطر؛ لأنها ساكنة","تُكتب على نبرة؛ لأن الكلمة مصدر"],ca:0,
+ why:"الهمزة الساكنة تتبع حركة ما قبلها، وهنا الميم مضمومة فتُكتب الهمزة على واو: مؤتمر."},
+{ax:4,lv:"a",t:"tf",r:"أثر اتصال الضمير على رسم الهمزة",q:"تُكتب الهمزة في كلمة [[مَبَادِئ]] على نبرة لأن ما قبلها مكسور، وتبقى على نبرة في [[مَبَادِئُهُمْ]] لأن الكسرة أقوى من ضمة الهمزة.",truth:true,
+ co:["تُكتب على واو في «مبادئهم» لأن الضمة أقوى من الكسرة","تُكتب على ألف في «مبادئهم» لأن الفتحة أقوى من الكسرة","تُكتب على السطر في «مبادئهم» لأنها متطرفة","تُكتب على نبرة في «مبادئ» وعلى واو في «مبادئهم»"],ca:-1,
+ why:"في الكلمتين يسبق الهمزة حرف مكسور (دِ)، وفي «مبادئهم» الهمزة مضمومة، لكن الكسرة أقوى من الضمة فتبقى الهمزة على نبرة."},
+{ax:4,lv:"m",t:"fill",r:"الهمزة المفتوحة بعد ضمة",q:"تحرص [[الْمُ▢سَّسَةُ]] على جودة التعليم.",blanks:["ؤ"],hint:"الهمزة مفتوحة.",
+ why:"الهمزة مفتوحة وما قبلها مضموم، والضمة أقوى فتُكتب على واو: المؤسسة."},
+{ax:4,lv:"a",t:"fill",r:"الجمع بين همزة الوصل والهمزة المتطرفة",q:"يعتمد الباحث على [[▢سْتِقْرَا▢]] الظواهر.",blanks:["ا","ء"],hint:"الأولى همزة وصل، والأخيرة متطرفة.",
+ why:"استقراء: الأولى همزة وصل (مصدر سداسي) فتُكتب ألفًا، والأخيرة متطرفة مسبوقة بألف ساكنة فتُكتب على السطر."},
+{ax:4,lv:"m",t:"corr",r:"الهمزة المفتوحة بعد ألف مد",q:"[[تسائل]] الطالب عن القاعدة.",acc:["تساءل"],
+ why:"الهمزة مفتوحة بعد ألف مد فتُكتب على السطر: تساءل."},
+{ax:4,lv:"b",t:"cls",r:"موقع الهمزة في الكلمة",q:"حدّد موقع الهمزة في كل كلمة:",cats:["أول الكلمة","وسط الكلمة","آخر الكلمة"],
+ items:[["أَمَل",0],["رَأْس",1],["سَمَاء",2],["مَسْأَلَة",1],["شَيْء",2]],
+ why:"أمل: الهمزة في أولها. رأس ومسألة: الهمزة في الوسط. سماء وشيء: الهمزة في الآخر."},
+{ax:4,lv:"a",t:"cls",r:"تحليل نوع الهمزة وموقعها",q:"صنّف كل كلمة بحسب نوع الهمزة وموقعها:",cats:["همزة وصل","همزة قطع في أول الكلمة","همزة متوسطة","همزة متطرفة"],
+ items:[["اثْنَانِ",0],["إِنْسَانٌ",1],["مُؤْمِنٌ",2],["شَيْءٌ",3],["مَبَادِئُ",3]],
+ why:"اثنان من الأسماء العشرة فهمزتها وصل. إنسان همزتها قطع في الأول. مؤمن همزتها متوسطة. شيء ومبادئ همزتهما متطرفة (الأولى على السطر والثانية على نبرة)."}
+];
+function stripD(s){return String(s).replace(/[\u064B-\u0652\u0670\u0640]/g,"")}
+function norm(s){return stripD(s).replace(/[\s.,،؛:!؟?"«»()\[\]]/g,"").replace(/ى/g,"ي")}
+function normK(s){return stripD(s).replace(/[أإآٱ]/g,"ا").replace(/ؤ/g,"و").replace(/ئ/g,"ي").replace(/ة/g,"ه").replace(/ى/g,"ي").replace(/\s+/g," ")}
+function matchCorr(q,txt){const acc=q.acc.map(norm);const toks=String(txt).split(/\s+/).map(norm).filter(Boolean);return toks.some(t=>acc.includes(t))}
+function critHits(q,txt){const n=normK(txt);return q.crit.map(c=>c.k.some(k=>n.includes(normK(k))))}
+function plain(s){return String(s).replace(/\[\[|\]\]/g,"")}
+function recon(q,arr){const m=q.q.match(/\[\[(.+?)\]\]/);let i=0;return m[1].replace(/▢/g,()=>arr[i++]||"؟")}
+function levelOf(p){return p>=90?["ممتاز","g"]:p>=75?["جيد جدًا","g"]:p>=60?["جيد","y"]:p>=50?["مقبول","y"]:["يحتاج إلى مراجعة","r"]}
+function fmtGrade(c){return String(Number((c*0.4).toFixed(1)))}
+/*CORE_END*/
+
+/* ===================== الحالة ===================== */
+function fresh(){return {screen:"intro",started:false,cur:0,ans:Array(Q.length).fill(null),seen:[],done:false}}
+function load(){try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&Array.isArray(s.ans)&&s.ans.length===Q.length)return s}catch(e){}return null}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+let S=load()||fresh();
+let U={};
+function resetU(){const q=Q[S.cur];U={sel:null,tf:null,k:null,f:Array(q.blanks?q.blanks.length:0).fill(null),act:0,txt:"",c:q.items?Array(q.items.length).fill(null):[]}}
+resetU();
+
+/* ===================== أدوات العرض ===================== */
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const fmt=s=>esc(s).replace(/\[\[(.+?)\]\]/g,'<span class="tg">$1</span>');
+const LB=["أ","ب","ج","د"];
+const PRAISE=["أحسنت! إجابة صحيحة.","ممتاز، استمر على هذا المستوى.","دقيق وصائب!","إجابة سليمة، وفّقك الله.","أصبتَ، بارك الله فيك."];
+
+function stats(){
+ const per=AXES.map(()=>({c:0,n:0}));let c=0,w=0;
+ S.ans.forEach((x,i)=>{if(!x)return;per[Q[i].ax].n++;if(x.ok){c++;per[Q[i].ax].c++}else w++});
+ return {c,w,n:c+w,per};
+}
+function dash(){
+ const s=stats();const pc=Math.round(s.n/Q.length*100);
+ return `<aside class="card dash noprint"><h3>لوحة التقدم</h3>
+ <div class="bar"><i style="width:${pc}%"></i></div>
+ <div class="stats">
+  <div class="st">المنجَز<b>${s.n}/${Q.length}</b></div>
+  <div class="st">الإنجاز<b>${pc}%</b></div>
+  <div class="st g">الصحيحة<b>${s.c}</b></div>
+  <div class="st r">الخاطئة<b>${s.w}</b></div>
+ </div>
+ ${AXES.map((a,i)=>{const p=s.per[i];const pp=p.n?Math.round(p.c/p.n*100):0;return `<div class="axrow"><div>${a.n}</div><div><span class="lv">${p.c}/${p.n} صحيحة${p.n?" · "+levelOf(pp)[0]:""}</span></div><div class="bar"><i style="width:${pp}%"></i></div></div>`}).join("")}
+ <div style="margin-top:12px"><button class="btn sec" data-act="restartq" style="padding:4px 14px;font-size:.85em">إعادة البدء</button></div>
+ </aside>`;
+}
+
+/* ===================== الشاشة الافتتاحية ===================== */
+function renderIntro(){
+ return `<div class="wrap fade"><section class="card hero">
+ <div class="kicker">المدرسة العليا للأساتذة · التقويم الذاتي في الإملاء العربي</div>
+ <h1>رحلة في عالم الهمزة</h1><h2>أتقن القاعدة واكتب بثقة</h2>
+ <p>نشاط تفاعلي من خمسين سؤالًا يقيس تمكّنك من قواعد كتابة الهمزة في أول الكلمة ووسطها وآخرها، ويدرّبك على تعليل الرسم الإملائي وتوظيفه في مواقف لغوية متنوعة.</p>
+ <div class="cols">
+  <div class="box"><h3>الأهداف</h3><ul>
+   <li>التمييز بين همزة القطع وهمزة الوصل.</li>
+   <li>إتقان كتابة الهمزة في أول الكلمة.</li>
+   <li>تطبيق قاعدة أقوى الحركتين في الهمزة المتوسطة.</li>
+   <li>ضبط رسم الهمزة المتطرفة وفق حركة ما قبلها.</li>
+   <li>اكتشاف الأخطاء الإملائية وتصويبها مع التعليل.</li>
+  </ul></div>
+  <div class="box"><h3>تعليمات المشاركة</h3><ul>
+   <li>خمسة محاور، في كل محور عشرة أسئلة بأنماط متنوعة.</li>
+   <li>يُعرض سؤال واحد في كل مرة، ويظهر التصحيح فور الإجابة.</li>
+   <li>لكل سؤال نقطة واحدة، والعلامة النهائية على 20 = النقاط × 0.4.</li>
+   <li>يُحفظ تقدمك تلقائيًا في هذا الجهاز، ويمكنك المتابعة لاحقًا.</li>
+   <li>في الختام تحصل على تقرير مفصل قابل للطباعة ومراجعة للأخطاء.</li>
+  </ul></div>
+ </div>
+ <div class="row">
+  <button class="btn" data-act="start">ابدأ التمرين</button>
+  ${S.started&&!S.done?'<button class="btn sec" data-act="resume">متابعة من حيث توقفت</button>':""}
+  ${S.started&&S.done?'<button class="btn sec" data-act="toresult">عرض آخر تقرير</button>':""}
+ </div>
+ </section></div>`;
+}
+
+/* ===================== شاشة السؤال ===================== */
+function axIntro(){
+ const a=Q[S.cur].ax;
+ return `<div class="wrap"><div class="layout"><section class="card axintro fade">
+ <div class="num">${a+1}</div><h2>المحور ${["الأول","الثاني","الثالث","الرابع","الخامس"][a]}: ${AXES[a].n}</h2>
+ <p>${AXES[a].d}</p><p class="tiny">عشرة أسئلة · السؤال ${S.cur+1} من ${Q.length}</p>
+ <button class="btn" data-act="beginax">ابدأ المحور</button></section>${dash()}</div></div>`;
+}
+function bodyHTML(q,ans){
+ const R=ans?ans.r:null;
+ if(q.t==="mcq"){
+  return `<div class="opts">`+q.o.map((o,i)=>{let c="opt";if(ans){if(i===q.a)c+=" ok";else if(i===R.s)c+=" bad"}else if(U.sel===i)c+=" sel";
+   return `<button class="${c}" data-act="opt" data-i="${i}" ${ans?"disabled":""}><span class="bul">${LB[i]}</span><span>${fmt(o)}</span></button>`}).join("")+`</div>`;
+ }
+ if(q.t==="tf"){
+  const ch=ans?R.c:U.tf,kk=ans?R.k:U.k;
+  const cls=v=>{let c="opt";if(ans){if(q.truth===v)c+=" ok";else if(ch===v)c+=" bad"}else if(ch===v)c+=" sel";return c};
+  let h=`<div class="tfrow"><button class="${cls(true)}" data-act="tf" data-v="1" ${ans?"disabled":""}>صحيحة</button><button class="${cls(false)}" data-act="tf" data-v="0" ${ans?"disabled":""}>خاطئة</button></div>`;
+  if(ch===false){
+   h+=`<div class="sub">اختر التصحيح الصحيح للعبارة:</div><div class="opts">`+q.co.map((o,i)=>{let c="opt";if(ans){if(q.ca===i&&!q.truth)c+=" ok";else if(kk===i)c+=" bad"}else if(kk===i)c+=" sel";
+    return `<button class="${c}" data-act="tfk" data-i="${i}" ${ans?"disabled":""}><span class="bul">${LB[i]}</span><span>${fmt(o)}</span></button>`}).join("")+`</div>`;
+  }
+  return h;
+ }
+ if(q.t==="fill"){
+  const f=ans?R.f:U.f;let bi=0;
+  const text=esc(q.q).replace(/\[\[(.+?)\]\]/g,(m,inner)=>'<span class="tg">'+inner.replace(/▢/g,()=>{const i=bi++;let c="blank";
+   if(ans)c+=f[i]===q.blanks[i]?" ok":" bad";else if(U.act===i)c+=" act";
+   return `<span class="${c}" data-act="blank" data-i="${i}">${f[i]||"؟"}</span>`})+'</span>');
+  let h=`<div class="qtext" style="font-weight:500">${text}</div><div class="tiny">${esc(q.hint)}</div>`;
+  if(!ans)h+=`<div class="keys">`+LET.map(l=>`<button class="key" data-act="letter" data-l="${l}">${l}</button>`).join("")+`</div>`;
+  return {fill:h};
+ }
+ if(q.t==="corr"){
+  const v=ans?R.x:U.txt;const c=ans?(ans.ok?"ok-b":"bad-b"):"";
+  return `<div class="sub">اكتب الصواب:</div><input id="ci" class="txt ${c}" type="text" autocomplete="off" value="${esc(v)}" ${ans?"readonly":""} placeholder="اكتب الكلمة هنا">`+
+   (ans?"":`<div class="keys">`+LET.map(l=>`<button class="key" data-act="key" data-l="${l}">${l}</button>`).join("")+`</div>`);
+ }
+ if(q.t==="cls"){
+  return q.items.map((it,i)=>{const v=ans?R.c[i]:U.c[i];let c="sl";if(ans)c+=v===it[1]?" ok-b":" bad-b";
+   return `<div class="clsrow"><span class="w tg">${esc(it[0])}</span><div><select class="${c}" data-act="clsel" data-i="${i}" ${ans?"disabled":""}><option value="">— اختر —</option>${q.cats.map((k,j)=>`<option value="${j}" ${v===j?"selected":""}>${k}</option>`).join("")}</select>${ans&&v!==it[1]?`<div class="fixnote">الصواب: ${q.cats[it[1]]}</div>`:""}</div></div>`}).join("");
+ }
+ if(q.t==="exp"){
+  const v=ans?R.x:U.txt;const c=ans?(ans.ok?"ok-b":"bad-b"):"";
+  return `<textarea id="ex" class="txt ${c}" ${ans?"readonly":""} placeholder="اكتب تعليلك هنا...">${esc(v)}</textarea>`+
+   (ans?"":`<div class="keys">`+LET.map(l=>`<button class="key" data-act="key" data-l="${l}">${l}</button>`).join("")+`</div>`);
+ }
+}
+function correctText(q){
+ if(q.t==="mcq")return plain(q.o[q.a]);
+ if(q.t==="tf")return q.truth?"العبارة صحيحة.":"العبارة خاطئة، والتصحيح: "+plain(q.co[q.ca]);
+ if(q.t==="fill")return recon(q,q.blanks);
+ if(q.t==="corr")return q.acc[0];
+ if(q.t==="cls")return q.items.map(it=>plain(it[0])+" ← "+q.cats[it[1]]).join("؛ ");
+ if(q.t==="exp")return q.model;
+}
+function userText(q,a){
+ const r=a.r;
+ if(q.t==="mcq")return r.s==null?"—":plain(q.o[r.s]);
+ if(q.t==="tf")return (r.c?"صحيحة":"خاطئة")+(r.c===false&&r.k!=null?" — "+plain(q.co[r.k]):"");
+ if(q.t==="fill")return recon(q,r.f);
+ if(q.t==="corr"||q.t==="exp")return r.x||"—";
+ if(q.t==="cls")return q.items.map((it,i)=>plain(it[0])+" ← "+(r.c[i]==null?"—":q.cats[r.c[i]])).join("؛ ");
+}
+function fbHTML(q,a){
+ let h="";
+ if(a.ok){
+  h+=`<div class="fb ok fade"><h4>${a.self?"اعتُمدت إجابتك ذاتيًا":PRAISE[S.cur%PRAISE.length]}</h4>`;
+ }else{
+  h+=`<div class="fb bad fade"><h4>إجابة غير صحيحة</h4>`;
+  if(q.t==="tf"&&a.r.c===false&&!q.truth)h+=`<p>أصبتَ في الحكم على العبارة بأنها خاطئة، لكن التصحيح المختار غير دقيق.</p>`;
+ }
+ if(!a.ok||q.t==="fill"||q.t==="cls"||q.t==="corr"||q.t==="tf"||q.t==="exp")h+=`<p><b>الإجابة الصحيحة:</b> ${esc(correctText(q))}</p>`;
+ if(q.t==="exp"){
+  h+=`<ul class="crit">`+q.crit.map((c,i)=>`<li class="${a.r.h[i]?"":"no"}">${esc(c.t)}</li>`).join("")+`</ul>`;
+  if(!a.ok)h+=`<p class="tiny">يُقبل أي تعليل صحيح مكافئ للإجابة النموذجية. إن رأيتَ أن إجابتك صحيحة بصيغة مختلفة فيمكنك اعتمادها ذاتيًا، وسيُشار إلى ذلك في التقرير.</p><button class="btn sec" data-act="self" style="padding:3px 16px;font-size:.9em">اعتماد إجابتي ذاتيًا</button>`;
+ }
+ h+=`<div class="rule"><b>القاعدة:</b> ${esc(q.why)}</div></div>`;
+ return h;
+}
+function canCheck(){
+ const q=Q[S.cur];
+ if(q.t==="mcq")return U.sel!=null;
+ if(q.t==="tf")return U.tf===true||(U.tf===false&&U.k!=null);
+ if(q.t==="fill")return U.f.every(Boolean);
+ if(q.t==="corr")return U.txt.trim().length>0;
+ if(q.t==="cls")return U.c.every(v=>v!=null);
+ if(q.t==="exp")return U.txt.trim().length>=8;
+}
+function renderQuiz(){
+ const q=Q[S.cur],a=S.ans[S.cur];
+ let body=bodyHTML(q,a),qtxt;
+ if(q.t==="fill"){qtxt="";body=body.fill}else qtxt=`<div class="qtext">${fmt(q.q)}</div>`;
+ const last=S.cur===Q.length-1;
+ return `<div class="wrap"><div class="layout"><section class="card fade" id="qc">
+ <div class="tags"><span class="tag">المحور ${S.cur<10?"الأول":S.cur<20?"الثاني":S.cur<30?"الثالث":S.cur<40?"الرابع":"الخامس"} · ${AXES[q.ax].n}</span><span class="tag">${TYPES[q.t]}</span><span class="tag lv-${q.lv}">${LV[q.lv]}</span></div>
+ <div class="tiny" style="margin-bottom:6px">السؤال ${S.cur+1} من ${Q.length}</div>
+ <div class="instr">${INSTR[q.t]}</div>${qtxt}${body}
+ <div class="actions noprint">${a?`<button class="btn" data-act="next">${last?"عرض التقرير النهائي":"السؤال التالي"}</button>`:`<button class="btn" id="chk" data-act="check" ${canCheck()?"":"disabled"}>تحقق من الإجابة</button>`}</div>
+ <div id="fbbox">${a?fbHTML(q,a):""}</div>
+ </section>${dash()}</div></div>`;
+}
+
+/* ===================== التقرير ===================== */
+function renderResult(){
+ const s=stats();const pct=Math.round(s.c/Q.length*1000)/10;
+ const ar=["الأول","الثاني","الثالث","الرابع","الخامس"];
+ const strong=[],weakRules=[];
+ s.per.forEach((p,i)=>{if(p.c/10>=0.7)strong.push(`تمكّن واضح في محور «${AXES[i].n}» (${p.c}/10).`)});
+ const adv=Q.map((q,i)=>({q,a:S.ans[i]})).filter(x=>x.q.lv==="a");
+ const advOk=adv.filter(x=>x.a&&x.a.ok).length;
+ if(adv.length&&advOk/adv.length>=0.7)strong.push(`قدرة جيدة على الأسئلة المتقدمة (${advOk}/${adv.length}).`);
+ const bt={};Q.forEach((q,i)=>{const a=S.ans[i];if(!bt[q.t])bt[q.t]={c:0,n:0};bt[q.t].n++;if(a&&a.ok)bt[q.t].c++});
+ Object.keys(bt).forEach(k=>{if(bt[k].n>=6&&bt[k].c/bt[k].n>=0.8)strong.push(`إتقان جيد في نمط «${TYPES[k]}» (${bt[k].c}/${bt[k].n}).`)});
+ const wrong=[];Q.forEach((q,i)=>{const a=S.ans[i];if(a&&!a.ok){wrong.push(i);if(!weakRules.includes(q.r))weakRules.push(q.r)}});
+ const unans=Q.length-s.n;
+ let msg=pct>=90?"أداء متميز يعكس إتقانًا عاليًا للقواعد.":pct>=75?"أداء جيد جدًا مع حاجة إلى تثبيت بعض القواعد.":pct>=60?"أداء جيد، ويستحسن مراجعة القواعد المبيَّنة أدناه.":pct>=50?"أداء مقبول، وتلزمك مراجعة منهجية للقواعد.":"تحتاج إلى مراجعة شاملة لقواعد الهمزة ثم إعادة المحاولة.";
+ return `<div class="wrap fade"><section class="card" id="report">
+ <div class="noprint tiny" style="text-align:center">المدرسة العليا للأساتذة</div>
+ <h2 style="text-align:center;color:var(--navy);margin:.2em 0">التقرير الختامي · رحلة في عالم الهمزة</h2>
+ <p style="text-align:center;margin:.2em 0">${esc(msg)}</p>
+ ${unans?`<p class="fixnote" style="text-align:center">تنبيه: ${unans} سؤالًا لم تتم الإجابة عنه، وقد احتُسب بصفر.</p>`:""}
+ <div class="summary">
+  <div class="st"><div class="big">${fmtGrade(s.c)}<small> / 20</small></div>العلامة النهائية</div>
+  <div class="st"><div class="big">${pct}<small>%</small></div>النسبة المئوية</div>
+  <div class="st g"><div class="big">${s.c}</div>إجابة صحيحة من ${Q.length}</div>
+  <div class="st r"><div class="big">${Q.length-s.c}</div>إجابة خاطئة أو متروكة</div>
+ </div>
+ <h3 class="sec">نتيجة كل محور</h3>
+ <table class="rt"><thead><tr><th>المحور</th><th>الصحيحة</th><th>النسبة</th><th>المستوى</th></tr></thead><tbody>
+ ${AXES.map((a,i)=>{const p=s.per[i];const pp=p.c*10;const l=levelOf(pp);return `<tr><td>${ar[i]}: ${a.n}</td><td>${p.c} / 10</td><td>${pp}%</td><td><span class="pill ${l[1]}">${l[0]}</span></td></tr>`}).join("")}
+ </tbody></table>
+ <h3 class="sec">نقاط القوة</h3>
+ ${strong.length?`<ul class="pl">${strong.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:`<p>لم تظهر بعدُ نقاط قوة بارزة، وهذا مجال للتحسن بالتدريب والمراجعة.</p>`}
+ <h3 class="sec">القواعد التي تحتاج إلى مراجعة</h3>
+ ${weakRules.length?`<ul class="pl">${weakRules.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:`<p>لا توجد قواعد تحتاج إلى مراجعة. أحسنت!</p>`}
+ <h3 class="sec" id="errs">الأسئلة التي أخطأتَ فيها (${wrong.length})</h3>
+ ${wrong.length?wrong.map(i=>{const q=Q[i],a=S.ans[i];return `<details class="err"><summary>السؤال ${i+1} · ${TYPES[q.t]} · ${esc(AXES[q.ax].n)}</summary><div class="in">
+  <p><b>السؤال:</b> ${fmt(q.q)}</p>
+  <p><b>إجابتك:</b> ${a.r?esc(userText(q,a)):"—"}</p>
+  <p><b>الإجابة الصحيحة:</b> ${esc(correctText(q))}</p>
+  <div class="rule"><b>التعليل:</b> ${esc(q.why)}</div></div></details>`}).join(""):`<p>لا أخطاء تستوجب المراجعة.</p>`}
+ ${Q.some((q,i)=>S.ans[i]&&S.ans[i].self)?`<p class="tiny">ملاحظة: اعتُمدت بعض إجابات التعليل ذاتيًا من قِبل الطالب (السؤال ${Q.map((q,i)=>S.ans[i]&&S.ans[i].self?i+1:null).filter(Boolean).join("، ")}).</p>`:""}
+ <div class="row noprint" style="margin-top:22px">
+  <button class="btn" data-act="retry">إعادة المحاولة</button>
+  <button class="btn sec" data-act="review">مراجعة الأخطاء</button>
+  <button class="btn gold" data-act="print">طباعة التقرير</button>
+ </div>
+ </section></div>`;
+}
+
+/* ===================== التحكم ===================== */
+function render(){
+ const app=document.getElementById("app");
+ if(S.screen==="intro")app.innerHTML=renderIntro();
+ else if(S.screen==="result")app.innerHTML=renderResult();
+ else{
+  const q=Q[S.cur];
+  const first=S.cur%10===0&&!S.ans[S.cur]&&!S.seen.includes(q.ax);
+  app.innerHTML=first?axIntro():renderQuiz();
+ }
+}
+function syncCheck(){const b=document.getElementById("chk");if(b)b.disabled=!canCheck()}
+function evalQ(q){
+ if(q.t==="mcq")return {ok:U.sel===q.a,r:{s:U.sel}};
+ if(q.t==="tf"){const ok=q.truth?U.tf===true:(U.tf===false&&U.k===q.ca);return {ok,r:{c:U.tf,k:U.k}}}
+ if(q.t==="fill")return {ok:q.blanks.every((b,i)=>U.f[i]===b),r:{f:U.f.slice()}};
+ if(q.t==="corr")return {ok:matchCorr(q,U.txt),r:{x:U.txt.trim()}};
+ if(q.t==="cls")return {ok:q.items.every((it,i)=>U.c[i]===it[1]),r:{c:U.c.slice()}};
+ if(q.t==="exp"){const h=critHits(q,U.txt);return {ok:h.every(Boolean),r:{x:U.txt.trim(),h}}}
+}
+function goTop(){window.scrollTo({top:0,behavior:"smooth"})}
+function toFeedback(){const e=document.getElementById("fbbox");if(e)e.scrollIntoView({behavior:"smooth",block:"center"})}
+
+document.addEventListener("click",e=>{
+ const b=e.target.closest("[data-act]");if(!b)return;
+ const act=b.dataset.act,q=Q[S.cur];
+ if(act==="start"){S=fresh();S.started=true;S.screen="quiz";resetU();save();render();goTop()}
+ else if(act==="resume"){S.screen="quiz";resetU();render();goTop()}
+ else if(act==="toresult"){S.screen="result";render();goTop()}
+ else if(act==="beginax"){S.seen.push(q.ax);save();render();goTop()}
+ else if(act==="opt"){U.sel=+b.dataset.i;render()}
+ else if(act==="tf"){U.tf=b.dataset.v==="1";U.k=null;render()}
+ else if(act==="tfk"){U.k=+b.dataset.i;render()}
+ else if(act==="blank"){U.act=+b.dataset.i;render()}
+ else if(act==="letter"){U.f[U.act]=b.dataset.l;const nx=U.f.findIndex(v=>!v);U.act=nx>=0?nx:U.act;render()}
+ else if(act==="key"){
+  const el=document.getElementById(q.t==="corr"?"ci":"ex");if(!el)return;
+  const st=el.selectionStart,en=el.selectionEnd;el.value=el.value.slice(0,st)+b.dataset.l+el.value.slice(en);
+  el.selectionStart=el.selectionEnd=st+1;el.focus();U.txt=el.value;syncCheck();
+ }
+ else if(act==="check"){if(!canCheck())return;S.ans[S.cur]=evalQ(q);save();render();toFeedback()}
+ else if(act==="self"){S.ans[S.cur].ok=true;S.ans[S.cur].self=true;save();render();toFeedback()}
+ else if(act==="next"){
+  if(S.cur===Q.length-1){S.screen="result";S.done=true}else{S.cur++;resetU()}
+  save();render();goTop();
+ }
+ else if(act==="retry"||act==="restartq"){
+  if(act==="restartq"&&!confirm("سيُمسح تقدمك الحالي. هل تريد إعادة البدء؟"))return;
+  S=fresh();S.started=true;S.screen="quiz";resetU();save();render();goTop();
+ }
+ else if(act==="review"){document.querySelectorAll("details.err").forEach(d=>d.open=true);const t=document.getElementById("errs");if(t)t.scrollIntoView({behavior:"smooth"})}
+ else if(act==="print"){document.querySelectorAll("details.err").forEach(d=>d.open=true);window.print()}
+});
+document.addEventListener("input",e=>{
+ if(e.target.id==="ci"||e.target.id==="ex"){U.txt=e.target.value;syncCheck()}
+});
+document.addEventListener("change",e=>{
+ const t=e.target;if(t.dataset&&t.dataset.act==="clsel"){U.c[+t.dataset.i]=t.value===""?null:+t.value;syncCheck()}
+});
+document.addEventListener("keydown",e=>{
+ if(e.key==="Enter"&&e.target.id==="ci"){e.preventDefault();const b=document.getElementById("chk");if(b&&!b.disabled)b.click()}
+});
+window.addEventListener("beforeprint",()=>{document.querySelectorAll("details.err").forEach(d=>d.open=true)});
+
+if(S.screen==="quiz"&&S.done){S.screen="result"}
+if(S.screen==="quiz"&&!S.started){S.screen="intro"}
+if(S.screen==="quiz"&&S.started&&!S.done){S.screen="intro"}
+render();
+</script>
+</body>
+</html>
